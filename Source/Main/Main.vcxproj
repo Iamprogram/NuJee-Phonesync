@@ -259,23 +259,23 @@
     </DriverSign>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>SimpleAudioSample</TargetName>
+    <TargetName>Phonesync</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <TargetName>SimpleAudioSample</TargetName>
+    <TargetName>Phonesync</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>SimpleAudioSample</TargetName>
+    <TargetName>Phonesync</TargetName>
     <IncludePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\km;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <TargetName>SimpleAudioSample</TargetName>
+    <TargetName>Phonesync</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>SimpleAudioSample</TargetName>
+    <TargetName>Phonesync</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>SimpleAudioSample</TargetName>
+    <TargetName>Phonesync</TargetName>
     <IncludePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\km;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -462,7 +462,7 @@
     <ClCompile Include="minwavert.cpp" />
     <ClCompile Include="minwavertstream.cpp" />
     <ClCompile Include="newdelete.cpp" />
-    <ResourceCompile Include="SimpleAudioSample.rc" />
+    <ResourceCompile Include="Phonesync.rc" />
   </ItemGroup>
   <ItemGroup>
     <Inf Exclude="@(Inx)" Include="*.inx" />
