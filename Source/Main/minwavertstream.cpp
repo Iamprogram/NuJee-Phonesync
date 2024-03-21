@@ -97,6 +97,11 @@ Return Value:
     //
     KeFlushQueuedDpcs();
 
+    // NJ release for RingBuffer
+    //DPF(D_TERSE, ("[Debug NJ] correct VirtualSoundGenerator =============="));
+    //m_VirtualSoundGenerator.UnInit();
+    //DPF(D_TERSE, ("[Debug NJ] ReleaseRingBufferInstance ok=============="));
+
     DPF_ENTER(("[CMiniportWaveRTStream::~CMiniportWaveRTStream]"));
 } // ~CMiniportWaveRTStream
 
@@ -341,8 +346,9 @@ Return Value:
 
         toneInitialPhaseDouble = (double)toneInitialPhase / 10000;
 
-        ntStatus = m_ToneGenerator.Init(toneFrequency, toneAmplitudeDouble, toneDCOffsetDouble, toneInitialPhaseDouble, m_pWfExt);
-
+        //ntStatus = m_ToneGenerator.Init(toneFrequency, toneAmplitudeDouble, toneDCOffsetDouble, toneInitialPhaseDouble, m_pWfExt);
+        ntStatus = m_VirtualSoundGenerator.Init(toneFrequency, toneAmplitudeDouble, toneDCOffsetDouble, toneInitialPhaseDouble, m_pWfExt);
+        
         if (!NT_SUCCESS(ntStatus))
         {
             return ntStatus;
@@ -1399,17 +1405,28 @@ ByteDisplacement - # of bytes to process.
 --*/
 {
     ULONG bufferOffset = m_ullLinearPosition % m_ulDmaBufferSize;
+    DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes ================================================="));
+    DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes m_ulDmaBufferSize = [%u]", m_ulDmaBufferSize));
+    DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes m_ullLinearPosition = [%u]", m_ullLinearPosition));
+    DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes bufferOffset = [%u]", bufferOffset));
 
     // Normally this will loop no more than once for a single wrap, but if
     // many bytes have been displaced then this may loops many times.
     while (ByteDisplacement > 0)
     {
         ULONG runWrite = min(ByteDisplacement, m_ulDmaBufferSize - bufferOffset);
+
+        DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes ByteDisplacement = [%u]", ByteDisplacement));
+        DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes runWrite = [%u]", runWrite));
+
+        //m_ToneGenerator.GenerateSine(m_pDmaBuffer + bufferOffset, runWrite, m_ullLinearPosition);
+        DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes GenerateVirtualSound >>>>>"));
+        m_VirtualSoundGenerator.GenerateVirtualSound(m_pDmaBuffer + bufferOffset, runWrite, m_ullLinearPosition);
         
-        m_ToneGenerator.GenerateSine(m_pDmaBuffer + bufferOffset, runWrite);
-           	
         bufferOffset = (bufferOffset + runWrite) % m_ulDmaBufferSize;
+        DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes bufferOffset = [%u]", bufferOffset));
         ByteDisplacement -= runWrite;
+        DPF(D_TERSE, ("[Debug NJ] CMiniportWaveRTStream::WriteBytes ByteDisplacement = [%u]", ByteDisplacement));
     }
 }
 

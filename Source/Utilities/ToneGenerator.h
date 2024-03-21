@@ -47,11 +47,15 @@ public:
         _In_    PWAVEFORMATEXTENSIBLE   WfExt
     );
     
-    VOID 
-    GenerateSine
-    (
+    VOID GenerateSine2(
+         _Out_writes_bytes_(BufferLength) BYTE* Buffer,
+         _In_                             size_t      BufferLength
+    );
+
+    VOID GenerateSine(
         _Out_writes_bytes_(BufferLength) BYTE       *Buffer, 
-        _In_                             size_t      BufferLength
+        _In_                             size_t      BufferLength,
+        _In_                             size_t      TargetBufferStart
     );
 
     VOID
@@ -64,6 +68,11 @@ public:
     }
 
 private:
+    VOID InitFrameFromMicBuffer
+    (
+        _Out_writes_bytes_(FrameSize)   BYTE* Frame,
+        _In_                            DWORD  FrameSize
+    );
     VOID InitNewFrame
     (
         _Out_writes_bytes_(FrameSize)   BYTE*  Frame, 

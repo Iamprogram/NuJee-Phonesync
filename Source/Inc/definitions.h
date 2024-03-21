@@ -195,4 +195,9 @@ NTSTATUS PropertyHandler_GenericPin
 #include "common.h"
 #include "kshelper.h"
 
+
+//NJ VirtualSound
+//unsigned int WinPCMs32le_raw_len = 929880;
+
+
 #endif // _SIMPLEAUDIOSAMPLE_DEFINITIONS_H_

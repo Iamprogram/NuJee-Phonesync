@@ -267,8 +267,9 @@
   <ItemGroup>
     <ClCompile Include="hw.cpp" />
     <ClCompile Include="kshelper.cpp" />
+    <ClCompile Include="RingBuffer.cpp" />
     <ClCompile Include="savedata.cpp" />
-    <ClCompile Include="tonegenerator.cpp" />
+    <ClCompile Include="VirtualSoundGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Inf Exclude="@(Inf)" Include="*.inf" />
@@ -280,7 +281,12 @@
     <None Exclude="@(None)" Include="*.def;*.bat;*.hpj;*.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Exclude="@(ClInclude)" Include="*.h;*.hpp;*.hxx;*.hm;*.inl;*.xsd" />
+    <ClInclude Include="hw.h" />
+    <ClInclude Include="RingBuffer.h" />
+    <ClInclude Include="savedata.h" />
+    <ClInclude Include="VirtualSoundGenerator.h" />
+    <ClInclude Include="WinPCMs32le.h" />
+    <ClInclude Include="WinPCMs32le2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

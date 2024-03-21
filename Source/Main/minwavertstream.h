@@ -15,7 +15,8 @@ Abstract:
 #define _SIMPLEAUDIOSAMPLE_MINWAVERTSTREAM_H_
 
 #include "savedata.h"
-#include "ToneGenerator.h"
+//#include "ToneGenerator.h"
+#include "VirtualSoundGenerator.h"
 
 //
 // Structure to store notifications events in a protected list
@@ -112,7 +113,8 @@ protected:
     PWAVEFORMATEXTENSIBLE       m_pWfExt;
     ULONG                       m_ulContentId;
     CSaveData                   m_SaveData;
-    ToneGenerator               m_ToneGenerator;
+    //ToneGenerator               m_ToneGenerator;
+    VirtualSoundGenerator       m_VirtualSoundGenerator;
     GUID                        m_SignalProcessingMode;
     BOOLEAN                     m_bEoSReceived;
     BOOLEAN                     m_bLastBufferRendered;
